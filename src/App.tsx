@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useDebounceValue } from './hooks/useDebounceValue';
+import { useDebouncedValue } from './hooks/useDebouncedValue';
 
 export const App = () => {
   const [value, setValue] = useState('');
 
-  const debouncedValue = useDebounceValue(value, 400);
+  const debouncedValue = useDebouncedValue(value, 400);
 
   useEffect(() => {
     console.log('debouncedValue::', debouncedValue);

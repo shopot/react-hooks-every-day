@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 
 type TimeoutId = ReturnType<typeof setTimeout>;
 
-export function useDebounceValue<T>(value: T, delay: number): T {
+export function useDebouncedValue<T>(value: T, delay: number): T {
   const [debouncedValue, setDebouncedValue] = useState<T>(value);
   const timerRef = useRef<TimeoutId | null>(null);
 
