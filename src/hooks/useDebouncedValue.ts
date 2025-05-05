@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 
-type TimeoutId = ReturnType<typeof setTimeout>;
+type TimeoutId = ReturnType<typeof setTimeout> | null;
 
 export function useDebouncedValue<T>(value: T, delay: number): T {
   const [debouncedValue, setDebouncedValue] = useState<T>(value);
-  const timerRef = useRef<TimeoutId | null>(null);
+  const timerRef = useRef<TimeoutId>(null);
 
   useEffect(() => {
     if (timerRef.current) {

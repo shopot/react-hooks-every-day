@@ -1,19 +1,19 @@
-import { useEffect, useState } from 'react';
-import { useDebouncedValue } from './hooks/useDebouncedValue';
+import { useDebounceCallback } from './hooks/useDebounceCallback';
 
 export const App = () => {
-  const [value, setValue] = useState('');
+  const debouncedLog = useDebounceCallback((value: string) => {
+    console.log(value);
+  }, 2000);
 
-  const debouncedValue = useDebouncedValue(value, 400);
-
-  useEffect(() => {
-    console.log('debouncedValue::', debouncedValue);
-  }, [debouncedValue]);
+  const handleClick = () => {
+    console.log('Click');
+    debouncedLog('Hello world!');
+  };
 
   return (
     <div>
       <h1>Hello React</h1>
-      <input value={value} onChange={(e) => setValue(e.target.value)} />
+      <button onClick={handleClick}>Click</button>
     </div>
   );
 };
