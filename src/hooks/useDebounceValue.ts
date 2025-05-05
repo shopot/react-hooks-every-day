@@ -2,8 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 
 type TimeoutId = ReturnType<typeof setTimeout> | null;
 
-export function useDebouncedValue<T>(value: T, delay: number): T {
-  const [debouncedValue, setDebouncedValue] = useState<T>(value);
+export function useDebounceValue<T>(value: T, delay: number): T {
+  const [debounceValue, setDebounceValue] = useState<T>(value);
   const timerRef = useRef<TimeoutId>(null);
 
   useEffect(() => {
@@ -11,7 +11,7 @@ export function useDebouncedValue<T>(value: T, delay: number): T {
       clearTimeout(timerRef.current);
     }
 
-    timerRef.current = setTimeout(() => setDebouncedValue(value), delay);
+    timerRef.current = setTimeout(() => setDebounceValue(value), delay);
 
     return () => {
       if (timerRef.current) {
@@ -20,5 +20,5 @@ export function useDebouncedValue<T>(value: T, delay: number): T {
     };
   }, [value, delay]);
 
-  return debouncedValue;
+  return debounceValue;
 }
