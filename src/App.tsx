@@ -1,19 +1,22 @@
-import { useDebounceCallback } from './hooks/useDebounceCallback';
+import React from 'react';
+
+import './App.css';
+import { useResizeObserver } from './hooks/useResizeObserver';
 
 export const App = () => {
-  const debouncedLog = useDebounceCallback((value: string) => {
-    console.log(value);
-  }, 2000);
+  const refDiv = React.useRef<HTMLDivElement>(null!);
+  const size = useResizeObserver(refDiv, (size) => {
+    console.log(JSON.stringify(size));
+  });
 
-  const handleClick = () => {
-    console.log('Click');
-    debouncedLog('Hello world!');
-  };
+  console.log(size);
 
   return (
-    <div>
+    <div className="box">
       <h1>Hello React</h1>
-      <button onClick={handleClick}>Click</button>
+      <div className="content" ref={refDiv}>
+        useResizeObserver
+      </div>
     </div>
   );
 };
